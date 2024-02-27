@@ -5,6 +5,8 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  isRouteErrorResponse,
+  useRouteError,
 } from "@remix-run/react";
 
 function Document({
@@ -42,30 +44,30 @@ export default function App() {
   );
 }
 
-// How StreetscapeProvider should be used on CatchBoundary
-export function CatchBoundary() {
-
-  return (
-    <Document>
-      <StreetscapeProvider>
-        <Box>
-          <Heading as="h1" bg="purple.600">
-            [CatchBoundary]: 
-          </Heading>
-        </Box>
-      </StreetscapeProvider>
-    </Document>
-  );
-}
-
 // How StreetscapeProvider should be used on ErrorBoundary
-export function ErrorBoundary({ error }: { error: Error }) {
+export function ErrorBoundary() {
+  const error = useRouteError();
+  if (isRouteErrorResponse(error)) {
+      return (
+        <Document>
+          <StreetscapeProvider>
+            <Box>
+              <Heading as="h1" bg="purple.600">
+                [CatchBoundary]: {error.status} {error.statusText}
+              </Heading>
+            </Box>
+          </StreetscapeProvider>
+        </Document>
+    );
+  }
+
+  const errorMessage = error instanceof Error ? error.message : "unknown error";
   return (
     <Document title="Error!">
       <StreetscapeProvider>
         <Box>
           <Heading as="h1" bg="blue.500">
-            [ErrorBoundary]: There was an error: {error.message}
+            [ErrorBoundary]: There was an error: {errorMessage}
           </Heading>
         </Box>
       </StreetscapeProvider>
