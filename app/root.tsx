@@ -33,8 +33,6 @@ function Document({
 }
 
 export default function App() {
-  // throw new Error("💣💥 Booooom");
-
   return (
     <Document>
       <StreetscapeProvider>
@@ -48,16 +46,16 @@ export default function App() {
 export function ErrorBoundary() {
   const error = useRouteError();
   if (isRouteErrorResponse(error)) {
-      return (
-        <Document>
-          <StreetscapeProvider>
-            <Box>
-              <Heading as="h1" bg="purple.600">
-                [CatchBoundary]: {error.status} {error.statusText}
-              </Heading>
-            </Box>
-          </StreetscapeProvider>
-        </Document>
+    return (
+      <Document>
+        <StreetscapeProvider>
+          <Box>
+            <Heading as="h1" bg="purple.600">
+              [CatchBoundary]: {error.status} {error.statusText}
+            </Heading>
+          </Box>
+        </StreetscapeProvider>
+      </Document>
     );
   }
 
