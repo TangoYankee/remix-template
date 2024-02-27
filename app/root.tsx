@@ -1,7 +1,6 @@
 import { ChakraProvider, Box, Heading } from "@chakra-ui/react";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -26,7 +25,6 @@ function Document({
         {children}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   );
