@@ -1,4 +1,4 @@
-import { ChakraProvider, Box, Heading } from "@chakra-ui/react";
+import { StreetscapeProvider, Box, Heading } from "@nycplanning/streetscape";
 import {
   Links,
   Meta,
@@ -35,40 +35,40 @@ export default function App() {
 
   return (
     <Document>
-      <ChakraProvider>
+      <StreetscapeProvider>
         <Outlet />
-      </ChakraProvider>
+      </StreetscapeProvider>
     </Document>
   );
 }
 
-// How ChakraProvider should be used on CatchBoundary
+// How StreetscapeProvider should be used on CatchBoundary
 export function CatchBoundary() {
 
   return (
     <Document>
-      <ChakraProvider>
+      <StreetscapeProvider>
         <Box>
           <Heading as="h1" bg="purple.600">
             [CatchBoundary]: 
           </Heading>
         </Box>
-      </ChakraProvider>
+      </StreetscapeProvider>
     </Document>
   );
 }
 
-// How ChakraProvider should be used on ErrorBoundary
+// How StreetscapeProvider should be used on ErrorBoundary
 export function ErrorBoundary({ error }: { error: Error }) {
   return (
     <Document title="Error!">
-      <ChakraProvider>
+      <StreetscapeProvider>
         <Box>
           <Heading as="h1" bg="blue.500">
             [ErrorBoundary]: There was an error: {error.message}
           </Heading>
         </Box>
-      </ChakraProvider>
+      </StreetscapeProvider>
     </Document>
   );
 }
